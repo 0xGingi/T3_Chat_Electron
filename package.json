@@ -1,0 +1,23 @@
+{
+	"name": "t3-chat-desktop",
+	"version": "1.0.0",
+	"description": "A Desktop Application for using T3 AI Chat on Windows",
+	"author": "JackNytely",
+	"license": "MIT",
+	"main": "build/app.js",
+	"scripts": {
+		"start": "electron .",
+		"build": "bun run clear-build; bun run clear-dist; bun run compile; bun run build-electron",
+		"build-electron": "electron-builder",
+		"clear-build": "bunx rimraf ./build",
+		"clear-dist": "bunx rimraf ./dist",
+		"compile": "tsc"
+	},
+	"devDependencies": {
+		"@types/electron": "^1.6.12",
+		"electron": "^33.3.1",
+		"electron-builder": "^25.1.8",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.7.3"
+	}
+}

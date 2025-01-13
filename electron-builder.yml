@@ -1,0 +1,11 @@
+appId: com.jacknytely.t3chat
+productName: T3 Chat
+directories:
+  output: ./dist
+files:
+  - "build/**/*"
+  - "icons/**"
+asar: true
+win:
+  target: [{ target: "nsis", arch: ["x64"] }]
+  icon: "icons/icon.ico"
