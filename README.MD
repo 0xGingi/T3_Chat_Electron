@@ -13,6 +13,11 @@ T3 Chat Desktop is a cross-platform desktop application for using T3 Chat on Win
 - Electron
 - TypeScript
 
+## Arch Linux (AUR)
+```
+paru -S t3-chat-electron
+```
+
 ## Building from Source
 
 ### Prerequisites
