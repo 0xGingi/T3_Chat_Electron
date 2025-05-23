@@ -17,6 +17,13 @@ export class ElectronClient {
 		this.mainWindow = null;
 		this.app = app;
 
+		//Set up Wayland support for Linux
+		if (process.platform === 'linux') {
+			if (!process.env.ELECTRON_OZONE_PLATFORM_HINT) {
+				process.env.ELECTRON_OZONE_PLATFORM_HINT = 'auto';
+			}
+		}
+
 		//Listen for Events on the Electron Client
 		this.app.on("window-all-closed", this.appClosedHandler.bind(this));
 		this.app.on("ready", this.readyHandler.bind(this));
@@ -39,11 +46,29 @@ export class ElectronClient {
 	//Handles the Event when the App is Ready
 	private readyHandler() {
 		//
+		//Setup window options with Linux/Wayland optimizations
+		const windowOptions: Electron.BrowserWindowConstructorOptions = {
+			width: 1280,
+			height: 720,
+			webPreferences: {
+				nodeIntegration: false,
+				contextIsolation: true,
+				webSecurity: true
+			},
+			show: false,
+			icon: process.platform === 'linux' ? 'icons/icon.png' : undefined
+		};
+
 		//Setup the New Main Window
-		this.mainWindow = new BrowserWindow({ width: 1280, height: 720 });
+		this.mainWindow = new BrowserWindow(windowOptions);
 
 		//Remove the Default Menu Bar
 		this.mainWindow.removeMenu();
+
+		//Show window when ready to prevent visual flash
+		this.mainWindow.once('ready-to-show', () => {
+			this.mainWindow?.show();
+		});
 
 		//Load the Requested URL on the Main Window
 		this.mainWindow.loadURL(this.requestedURL);

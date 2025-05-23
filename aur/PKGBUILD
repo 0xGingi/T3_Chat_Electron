@@ -1,0 +1,50 @@
+# Maintainer: 0xGingi <gingi@example.com>
+pkgname=t3-chat-desktop
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A Desktop Application for using T3 AI Chat"
+arch=('x86_64')
+url="https://github.com/0xGingi/T3_Chat_Electron"
+license=('MIT')
+depends=('electron' 'gtk3' 'libxss' 'gconf' 'nss')
+makedepends=('git' 'bun' 'typescript')
+optdepends=('libappindicator-gtk3: for tray icon support')
+source=("git+https://github.com/0xGingi/T3_Chat_Electron.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "T3_Chat_Electron"
+    printf "1.0.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "T3_Chat_Electron"
+    bun install
+    bun run compile
+    bun run build-linux-dir
+}
+
+package() {
+    cd "T3_Chat_Electron"
+    
+    install -dm755 "$pkgdir/usr/lib/$pkgname"
+    cp -r dist/linux-unpacked/* "$pkgdir/usr/lib/$pkgname/"
+    
+    install -dm755 "$pkgdir/usr/bin"
+    cat > "$pkgdir/usr/bin/$pkgname" << EOF
+#!/bin/bash
+cd /usr/lib/$pkgname
+exec electron . "\$@"
+EOF
+    chmod +x "$pkgdir/usr/bin/$pkgname"
+    
+    install -Dm644 "aur/t3-chat-desktop.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+    
+    for size in 32x32 128x128; do
+        install -Dm644 "icons/$size.png" "$pkgdir/usr/share/icons/hicolor/$size/apps/$pkgname.png"
+    done
+    
+    install -Dm644 "icons/icon.png" "$pkgdir/usr/share/pixmaps/$pkgname.png"
+    
+    install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+} 

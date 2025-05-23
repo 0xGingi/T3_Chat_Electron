@@ -1,31 +1,36 @@
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Nytely-Official/T3_Chat_Windows/total?style=for-the-badge&link=https%3A%2F%2Fgithub.com%2FNytely-Official%2FT3_Chat_Windows%2Freleases)
 
-# T3 Chat Windows
+# T3 Chat Desktop
 
-T3 Chat Windows is a desktop application for using the T3 Chat on Windows.
-
-## Installation
-
-Visit the [Releases](https://github.com/Nytely-Official/T3_Chat_Windows/releases) page and downloaded the Latest Version's Setup.exe file
+T3 Chat Desktop is a cross-platform desktop application for using T3 Chat on Windows and Linux.
 
 ## Features
 
-- Opens T3.chat in a dedicated desktop window.
+- Opens beta.T3.chat in a dedicated desktop window
+- Cross-platform support (Windows and Linux)
 
 ## Built with
 
 - Electron
 - TypeScript
 
-## Contributing
+## Building from Source
 
-We encourage contributions to this project! Please refer to the `CONTRIBUTING.md` file for details.
+### Prerequisites
+- Bun
+- Git
 
-## Support
+### Build Commands
+```bash
+bun install
 
-For support, please join our Discord Server.
+bun run build
 
-#### [Nytely Development](https://discord.gg/VkZHkp8Ese)
+# Build for Linux
+bun run build-linux
+
+# Build for Windows
+bun run build-windows
+```
 
 ## Disclaimer
 

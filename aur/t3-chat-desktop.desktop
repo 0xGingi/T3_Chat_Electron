@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=T3 Chat Desktop
+Comment=Desktop application for T3 Chat
+Exec=t3-chat-desktop
+Icon=t3-chat-desktop
+Terminal=false
+Type=Application
+Categories=Network;Chat;WebBrowser;
+StartupWMClass=t3-chat-desktop
+MimeType=x-scheme-handler/t3chat; 
