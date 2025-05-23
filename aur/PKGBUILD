@@ -1,13 +1,13 @@
 # Maintainer: 0xGingi <gingi@example.com>
-pkgname=t3-chat-desktop
-pkgver=1.0.0
+pkgname=t3-chat-electron
+pkgver=1.0.0.r2.1cb7f85
 pkgrel=1
 pkgdesc="A Desktop Application for using T3 AI Chat"
 arch=('x86_64')
 url="https://github.com/0xGingi/T3_Chat_Electron"
 license=('MIT')
-depends=('electron' 'gtk3' 'libxss' 'gconf' 'nss')
-makedepends=('git' 'bun' 'typescript')
+depends=('electron' 'gtk3' 'libxss' 'nss')
+makedepends=('git' 'bun')
 optdepends=('libappindicator-gtk3: for tray icon support')
 source=("git+https://github.com/0xGingi/T3_Chat_Electron.git")
 sha256sums=('SKIP')
@@ -21,14 +21,15 @@ build() {
     cd "T3_Chat_Electron"
     bun install
     bun run compile
-    bun run build-linux-dir
 }
 
 package() {
     cd "T3_Chat_Electron"
     
     install -dm755 "$pkgdir/usr/lib/$pkgname"
-    cp -r dist/linux-unpacked/* "$pkgdir/usr/lib/$pkgname/"
+    cp -r build "$pkgdir/usr/lib/$pkgname/"
+    cp package.json "$pkgdir/usr/lib/$pkgname/"
+    cp -r icons "$pkgdir/usr/lib/$pkgname/"
     
     install -dm755 "$pkgdir/usr/bin"
     cat > "$pkgdir/usr/bin/$pkgname" << EOF
