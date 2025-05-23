@@ -1,7 +1,7 @@
 # Maintainer: 0xGingi <gingi@example.com>
 pkgname=t3-chat-electron-git
 _pkgname=t3-chat-electron
-pkgver=1.0.0.r4.21a5233
+pkgver=1.0.0.r5.b41fe59
 pkgrel=1
 pkgdesc="A Desktop Application for using T3 AI Chat"
 arch=('x86_64')

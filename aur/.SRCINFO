@@ -1,6 +1,6 @@
-pkgbase = t3-chat-electron
+pkgbase = t3-chat-electron-git
 	pkgdesc = A Desktop Application for using T3 AI Chat
-	pkgver = 1.0.0.r2.1cb7f85
+	pkgver = 1.0.0.r5.b41fe59
 	pkgrel = 1
 	url = https://github.com/0xGingi/T3_Chat_Electron
 	arch = x86_64
@@ -15,4 +15,4 @@ pkgbase = t3-chat-electron
 	source = git+https://github.com/0xGingi/T3_Chat_Electron.git
 	sha256sums = SKIP
 
-pkgname = t3-chat-electron
+pkgname = t3-chat-electron-git
