@@ -2,9 +2,3 @@ build/
 dist/
 node_modules/
 package-lock.json
-aur/pkg
-aur/src
-aur/T3_Chat_Electron
-aur/t3-chat-electron
-aur/*.zst
-aur/.git
